@@ -1,0 +1,75 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "rag_api_test",
+      "image": "ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "hostPort": 8000,
+          "protocol": "tcp",
+          "name": "rag_api",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        {
+          "name": "VECTOR_DB_TYPE",
+          "value": "atlas-mongo"
+        },
+        {
+          "name": "MONGO_VECTOR_COLLECTION",
+          "value": "rag_vectors"
+        }
+      ],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "secrets": [
+        {
+          "name": "ATLAS_MONGO_DB_URI",
+          "valueFrom": "/libreChat/Shi/atlas-free-mongodb"
+        },
+        {
+          "name": "RAG_OPENAI_API_KEY",
+          "valueFrom": "/AITokRadioStaging/OpenAI_API_KEY"
+        }
+      ],
+      "ulimits": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/libreChat",
+          "awslogs-region": "ap-east-1",
+          "awslogs-stream-prefix": "rag-api-test"
+        },
+        "secretOptions": []
+      },
+      "healthCheck": {
+        "command": [
+          "CMD-SHELL",
+          "curl -sf http://localhost:8000/health || exit 1"
+        ],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3
+      }
+    }
+  ],
+  "family": "libreChat-rag-api-test",
+  "taskRoleArn": "arn:aws:iam::696666886017:role/ecsTaskRole",
+  "executionRoleArn": "arn:aws:iam::696666886017:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "volumes": [],
+  "placementConstraints": [],
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512"
+}
