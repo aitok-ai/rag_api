@@ -1,0 +1,36 @@
+name: Update ECS Task Definition
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment"
+        required: true
+        type: choice
+        default: "production"
+        options: ["test", "production"]
+
+jobs:
+  update-ecs-service:
+    runs-on: ubuntu-latest
+    # runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: Update Task Definition and Use It
+        run: |
+          if [[ ${{ inputs.environment }} == production  ]]; then
+            cd ecs/update_prod_task_definition
+            ./ecs_create_task_prod.sh
+          elif [[ ${{ inputs.environment }} == test  ]]; then
+            cd ecs/update_test_task_definition
+            ./ecs_create_task_test.sh
+          else
+            echo "Not yet implemented for Staging"
+          fi
