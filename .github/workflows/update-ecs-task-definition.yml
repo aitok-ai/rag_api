@@ -6,7 +6,7 @@ on:
         description: "Environment"
         required: true
         type: choice
-        default: "production"
+        default: "test"
         options: ["test", "production"]
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
+          aws-region: ap-east-1
 
       - name: Update Task Definition and Use It
         run: |
@@ -32,5 +32,5 @@ jobs:
             cd ecs/update_test_task_definition
             ./ecs_create_task_test.sh
           else
-            echo "Not yet implemented for Staging"
+            echo "Not yet implemented for ${{ inputs.environment }} environment."
           fi
