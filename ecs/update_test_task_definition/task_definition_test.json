@@ -27,16 +27,7 @@
       "environmentFiles": [],
       "mountPoints": [],
       "volumesFrom": [],
-      "secrets": [
-        {
-          "name": "ATLAS_MONGO_DB_URI",
-          "valueFrom": "/libreChat/Shi/atlas-free-mongodb"
-        },
-        {
-          "name": "RAG_OPENAI_API_KEY",
-          "valueFrom": "/AITokRadioStaging/OpenAI_API_KEY"
-        }
-      ],
+      "secrets": [],
       "ulimits": [],
       "logConfiguration": {
         "logDriver": "awslogs",
