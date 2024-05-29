@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export AWS_DEFAULT_REGION=ap-southeast-1
+export AWS_REGION=ap-southeast-1
 
 ECS_CLUSTER_NAME=production
 ECS_SERVICE_NAME=libreChat-rag-api-prod-service
