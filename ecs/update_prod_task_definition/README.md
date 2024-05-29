@@ -23,3 +23,13 @@ and `JWT_SECRET valueFrom /libreChat/Prod/RAG_JWT_SECRET`
 - use Service Connect: client side only, use the `production` namespace
 
 ## RAG-API
+
+### Create Task Definition
+
+Trigger [workflow](https://github.com/aitok-ai/rag_api/actions/workflows/update-ecs-task-definition.yml) for production
+- it will create the task definition
+- it will fail on updating the service since the service hasn't been created yet
+
+## Create ECS Service
+
+Do it manually
