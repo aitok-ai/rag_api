@@ -1,7 +1,7 @@
 {
   "containerDefinitions": [
     {
-      "name": "rag_api_test",
+      "name": "rag_api_prod",
       "image": "ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest",
       "cpu": 0,
       "portMappings": [
@@ -48,7 +48,7 @@
           "awslogs-create-group": "true",
           "awslogs-group": "/ecs/libreChat",
           "awslogs-region": "ap-east-1",
-          "awslogs-stream-prefix": "rag-api-test"
+          "awslogs-stream-prefix": "rag-api-prod"
         },
         "secretOptions": []
       },
