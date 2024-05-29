@@ -34,11 +34,11 @@
         },
         {
           "name": "RAG_OPENAI_API_KEY",
-          "valueFrom": "/AITokRadioStaging/OpenAI_API_KEY"
+          "valueFrom": "/libreChat/OpenAI_API_KEY"
         },
         {
           "name": "JWT_SECRET",
-          "valueFrom": "/LibreChat/Test/RAG_JWT_SECRET"
+          "valueFrom": "/libreChat/Prod/RAG_JWT_SECRET"
         }
       ],
       "ulimits": [],
@@ -63,7 +63,7 @@
       }
     }
   ],
-  "family": "libreChat-rag-api-test",
+  "family": "libreChat-rag-api-prod",
   "taskRoleArn": "arn:aws:iam::696666886017:role/ecsTaskRole",
   "executionRoleArn": "arn:aws:iam::696666886017:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
