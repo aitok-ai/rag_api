@@ -30,7 +30,7 @@
       "secrets": [
         {
           "name": "ATLAS_MONGO_DB_URI",
-          "valueFrom": "/libreChat/Shi/atlas-free-mongodb"
+          "valueFrom": "/libreChat/atlas-mongodb/dedicated"
         },
         {
           "name": "RAG_OPENAI_API_KEY",
